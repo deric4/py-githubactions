@@ -4,7 +4,7 @@ setup(
     name="githubactions",
     author="deric4",
     url="https://github.com/deric4/githubactions"
-    packages=find_packages(where="src"),
+    packages=find_packages(where="src", excludes=['tests', '.venv']),
     package_dir={"": "src"},
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
