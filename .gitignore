@@ -1,2 +1,5 @@
 .eggs/
 .venv/
+build/
+**/*.egg-info/
+dist/
