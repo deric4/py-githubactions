@@ -1,5 +1,8 @@
+.tox
 .eggs/
 .venv/
 build/
 **/*.egg-info/
 dist/
+__pycache__/
+

@@ -15,6 +15,7 @@ clean-build:
 	rm -rf build/
 	rm -rf dist/
 	rm -rf src/*.egg-info
+	rm -rf .eggs
 
 clean-py:
 	find . -type f -name "*.py[co]" -delete
