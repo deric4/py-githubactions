@@ -1,7 +1,7 @@
 import pytest 
 import os
 
-from githubactions import core
+from githubactions.core import command
 
 
 
@@ -33,13 +33,13 @@ def env_vars(monkeypatch, request):
 
 def test_set_env(request, capsys, env_vars):
 
-    core.set_env('my var', 'var val') 
+    command.set_env('my var', 'var val') 
     captured = capsys.readouterr()
 
     assert captured.out == '::set-env name=my var::var val\n'
     assert os.getenv('my var') == 'var val'
 
-    core.set_env('special char var \r\n];', 'special val')
+    command.set_env('special char var \r\n];', 'special val')
     captured = capsys.readouterr()
 
     assert captured.out == '::set-env name=special char var %0D%0A%5D%3B::special val\n'
@@ -47,41 +47,40 @@ def test_set_env(request, capsys, env_vars):
 
 def test_add_mask(request, capsys):
 
-    core.add_mask('secret val')
+    command.add_mask('secret val')
     captured = capsys.readouterr()
 
     assert captured.out == '::add-mask::secret val\n'
 
 def test_add_path(request, capsys, env_vars):
 
-    core.add_path('myPath')
+    command.add_path('myPath')
     assert os.getenv('PATH') == f"{os.path.sep}".join(['myPath', 'path1', 'path2'])
 
 def test_get_input(request, capsys, env_vars):
-    assert core.get_input('my input') == 'val'
+    assert command.get_input('my input') == 'val'
 
-    assert core.get_input('my input', {'required': True}) == 'val'
+    assert command.get_input('my input', {'required': True}) == 'val'
 
-    assert core.get_input('missing', {'required': False}) == ''
+    assert command.get_input('missing', {'required': False}) == ''
 
     with pytest.raises(ValueError):
-        assert core.get_input('missing', {'required': True})
+        assert command.get_input('missing', {'required': True})
 
-    assert core.get_input('My InPut') == 'val'
+    assert command.get_input('My InPut') == 'val'
 
-    assert core.get_input('multiple spaces variable') == 'I have multiple spaces'
+    assert command.get_input('multiple spaces variable') == 'I have multiple spaces'
 
 def test_set_output(request, capsys):
 
-    core.set_output('some output', 'some value')
+    command.set_output('some output', 'some value')
     captured = capsys.readouterr()
 
     assert captured.out == '::set-output name=some output::some value\n'
 
 def test_set_failed(capsys) -> None:
 
-    core.set_failed('Failure message')
+    command.set_failed('Failure message')
     captured = capsys.readouterr()
 
     assert captured.out == '::error::Failure message\n'
-
