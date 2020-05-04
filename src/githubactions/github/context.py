@@ -1,8 +1,4 @@
-from typing import Optional
 from pydantic import BaseSettings, FilePath, Json, Field
-import os
-import inspect
-
 
 class GithubCtx(BaseSettings):
     payload: Json
