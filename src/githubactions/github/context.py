@@ -22,7 +22,7 @@ class GithubCtx(BaseSettings):
     base_ref: str
     token: str
     workspace: str = None
-    action: str 
+    action: str
 
     class Config:
         env_prefix = 'GITHUB_'
