@@ -12,7 +12,7 @@ class GithubCtx(BaseSettings):
     repository: str
     repository_owner: str
     event_name: str
-    sha: Field(min_length=40, max_length=40)
+    sha: str #Field(...,min_length=40, max_length=40)
     ref: str
     head_ref: str
     base_ref: str
