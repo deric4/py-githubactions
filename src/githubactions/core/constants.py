@@ -1,3 +1,4 @@
+CMD_STR = "::"
 
 ADD_MASK_FMT   = '::add-mask::{}'
 ADD_PATH_FMT   = '::add-path::{}'
