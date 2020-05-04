@@ -16,7 +16,6 @@ class GithubCtx(BaseSettings):
     ref: str
     head_ref: str
     base_ref: str
-    token: str
     workspace: str = None
     action: str
 
