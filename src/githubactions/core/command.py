@@ -1,12 +1,17 @@
+from pydantic import BaseModel
 from typing import Dict, Optional, Any
 from enum import Enum
 import os
 
 from githubactions.core.constants import *
 
-CMD_STR = "::"
 
 CommandProperties = Dict[str, str]
+
+class Kommand(BaseModel):
+    command: str = 'missing.command'
+    properties: Dict[str, str] = {}
+    message: str = None
 
 class Command:
     def __init__(self, command: str = None, properties: CommandProperties = {}, message: str = None ) -> None:
