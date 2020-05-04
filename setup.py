@@ -8,5 +8,6 @@ setup(
     package_dir={"": "src"},
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
+    install_requires=['pydantic'],
     python_requires='>=3.7',
 )
